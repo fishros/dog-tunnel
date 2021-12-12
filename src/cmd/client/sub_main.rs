@@ -1,5 +1,6 @@
 use tokio::net::TcpStream;
-use tokio::prelude::*;
+use tokio::io::AsyncWriteExt;
+
 
 use crate::common::flags_info;
 pub async fn sub_main(cmd: &flags_info::ClientOpts, opts: &flags_info::Opts) {

@@ -4,4 +4,4 @@
 
 pub mod cmd;
 pub mod common;
-pub mod pipe;
+//pub mod pipe;
