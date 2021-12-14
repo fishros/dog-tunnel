@@ -1,0 +1,23 @@
+[[nodes]]
+name = "A"
+ "N"
+way = ["UDP"] ## direct from A to B, pure UDP pipe
+
+[action]
+local="A"
+remote="B"
+route_method="bind_session" #anytime: pipe will switch anytime in one session, tunnel will split data and merge, bind_session:will keep the same connection during one session
+
+[[local_ports]]
+start_port=1234
+action="socks5"
+route_method="bind_session" #sub route_method
+#action="tcp_nat"
+#action="tcp_port_forward"
+#action="udp_port_forward"
+[[local_ports]]
+start_port=12345
+action="tcp_nat"
+
+[connections]
+connections = ["M", "M", "M", "N", "N"]
