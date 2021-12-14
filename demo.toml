@@ -1,6 +1,23 @@
 [[nodes]]
 name = "A"
- "N"
+admin_addr = "127.0.0.1:1111"
+[[nodes]]
+name = "B"
+admin_addr = "127.0.0.1:1112"
+[[nodes]]
+name = "C"
+admin_addr = "127.0.0.1:1113"
+[[nodes]]
+name = "D"
+admin_addr = "127.0.0.1:1114"
+
+[[ways]]
+num = 3
+name = "M"
+way = ["TCP", "C", "UDP_RELIABLE"] ## from A route to C, and then route to B// pipe A->C:tcp pipe, pipe C->B: udp reliable pipe
+[[ways]]
+name = "N"
+num = 1
 way = ["UDP"] ## direct from A to B, pure UDP pipe
 
 [action]
@@ -12,12 +29,10 @@ route_method="bind_session" #anytime: pipe will switch anytime in one session, t
 start_port=1234
 action="socks5"
 route_method="bind_session" #sub route_method
+route_bind = "M" #route_method or route_bind choose one
 #action="tcp_nat"
 #action="tcp_port_forward"
 #action="udp_port_forward"
 [[local_ports]]
 start_port=12345
 action="tcp_nat"
-
-[connections]
-connections = ["M", "M", "M", "N", "N"]
