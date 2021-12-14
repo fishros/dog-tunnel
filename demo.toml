@@ -20,7 +20,7 @@ name = "N"
 num = 1
 way = ["UDP"] ## direct from A to B, pure UDP pipe
 
-[action]
+[global]
 local="A"
 remote="B"
 route_method="bind_session" #anytime: pipe will switch anytime in one session, tunnel will split data and merge, bind_session:will keep the same connection during one session
@@ -36,3 +36,6 @@ route_bind = "M" #route_method or route_bind choose one
 [[local_ports]]
 start_port=12345
 action="tcp_nat"
+[[local_ports]]
+start_port=5353
+action="dns_proxy"
